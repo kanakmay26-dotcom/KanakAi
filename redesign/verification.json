@@ -1,0 +1,22 @@
+{
+  "desktopAndMobile": true,
+  "checkedWidths": [
+    390,
+    768,
+    1440
+  ],
+  "pricing": [
+    "25 USD/month",
+    "311 USD/year"
+  ],
+  "calculator": {
+    "up": 4076.624,
+    "down": 4056.458,
+    "anchor": 4066.535
+  },
+  "productDialogs": true,
+  "planEnquiryPreselection": true,
+  "mobileNavigation": true,
+  "javascriptErrors": [],
+  "failedLocalRequests": []
+}

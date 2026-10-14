@@ -1,0 +1,9 @@
+import fs from 'node:fs';
+import path from 'node:path';
+const root=process.cwd(),assets={};
+function walk(dir){for(const item of fs.readdirSync(dir,{withFileTypes:true})){const file=path.join(dir,item.name);if(item.isDirectory())walk(file);else{const key='/'+path.relative(path.join(root,'public'),file).split(path.sep).join('/');const type={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'application/javascript; charset=utf-8','.woff2':'font/woff2'}[path.extname(file)]||'application/octet-stream';assets[key]={type,data:fs.readFileSync(file).toString('base64')};}}}
+walk(path.join(root,'public'));
+const checkout=fs.readFileSync('worker/checkout.mjs','utf8').replaceAll('export ','');
+const source=checkout+'\nconst assets='+JSON.stringify(assets)+';\nexport default {async fetch(request){const url=new URL(request.url);if(url.pathname==="/api/checkout")return checkout(request);if(request.method!=="GET"&&request.method!=="HEAD")return new Response("Method not allowed",{status:405});const key=url.pathname==="/"?"/index.html":url.pathname;const asset=assets[key];if(!asset)return new Response("Not found",{status:404});const bytes=Uint8Array.from(atob(asset.data),c=>c.charCodeAt(0));return new Response(request.method==="HEAD"?null:bytes,{headers:{"Content-Type":asset.type,"X-Content-Type-Options":"nosniff","Referrer-Policy":"strict-origin-when-cross-origin","Cache-Control":key.endsWith(".woff2")?"public, max-age=31536000, immutable":"no-cache"}});}};';
+fs.writeFileSync('worker/index.js',source);
+fs.mkdirSync('dist/server',{recursive:true});fs.mkdirSync('dist/.openai',{recursive:true});fs.writeFileSync('dist/server/index.js',source);fs.copyFileSync('.openai/hosting.json','dist/.openai/hosting.json');console.log('Built Worker with static assets and secure checkout');

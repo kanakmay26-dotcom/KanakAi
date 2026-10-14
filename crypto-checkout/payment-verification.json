@@ -1,0 +1,13 @@
+{
+  "server_checks": "All seven fixed amounts; rejects invalid products, emails, cross-origin requests and unsafe redirect URLs; provider errors recover safely",
+  "browser_checks": "Correct tier selections, prices, consent, delivery email, request payload and retry UI; mobile layout; no JavaScript errors",
+  "live_invoice_check": {
+    "status": 200,
+    "automated": true,
+    "invoice_host": "nowpayments.io",
+    "amount_usd": 25,
+    "funds_sent": false,
+    "fulfillment_requested": false
+  },
+  "renewal": "New payment for each access period; no automatic debit"
+}

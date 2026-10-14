@@ -1,0 +1,15 @@
+{
+  "title": "Kanak AI — Automated MT5 Trading Engine | Kanak Algo's",
+  "theme": "dark",
+  "views": [
+    "product",
+    "about",
+    "contact",
+    "home"
+  ],
+  "legal": true,
+  "productDetail": 1,
+  "mobileOverflow": false,
+  "mobileMenu": true,
+  "javascriptErrors": []
+}

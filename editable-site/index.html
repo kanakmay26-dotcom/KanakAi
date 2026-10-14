@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kanak AI — Automated MT5 Trading Engine | Kanak Algo's</title>
+<meta name="description" content="Kanak AI is a rules-based breakout trading engine for MetaTrader 5. Adaptive confirmation, news filtering, and fixed-risk position sizing, running on your own broker account. Pay by USDT (TRC20).">
+<meta property="og:title" content="Kanak AI — Automated MT5 Trading Engine">
+<meta property="og:description" content="Rules-based breakout execution for MetaTrader 5. Trial from $499, lifetime access from $5,500. Crypto checkout.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='4' fill='%23FFFFFF'/%3E%3Ccircle cx='12' cy='12' r='4' fill='%231B8A54'/%3E%3C/svg%3E">
+<link href="fonts.css" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="brand"><span class="dot"></span>KANAK ALGO'S</div>
+  <button class="navlinks-mobile-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+  <div class="navlinks" id="navLinks">
+    <button data-view="home" class="active">Home</button>
+    <button data-view="product">Products</button>
+    <button data-view="about">About</button>
+    <button data-view="contact">Contact</button>
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg id="iconSun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg id="iconMoon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="display:none;"><path d="M21 12.5A9 9 0 1 1 11.5 3 7 7 0 0 0 21 12.5Z"/></svg>
+    </button>
+    <a class="nav-cta" href="#" data-view="product">Get Access</a>
+  </div>
+</nav>
+
+<div class="ticker-strip">
+  <div class="ticker-track">
+    <span class="tick">MT5 native execution</span>
+    <span class="tick up">XAU/USD ▲</span>
+    <span class="tick">Adaptive breakout confirmation</span>
+    <span class="tick down">USD/INR ▼</span>
+    <span class="tick">Built-in news-event filter</span>
+    <span class="tick up">MCX GOLD ▲</span>
+    <span class="tick">Fixed-percent risk sizing</span>
+    <span class="tick">EMA trailing exit</span>
+    <span class="tick">Self-custody — your broker, your account</span>
+    <span class="tick">Trusted by traders across India &amp; worldwide</span>
+    <span class="tick">MT5 native execution</span>
+    <span class="tick up">XAU/USD ▲</span>
+    <span class="tick">Adaptive breakout confirmation</span>
+    <span class="tick down">USD/INR ▼</span>
+    <span class="tick">Built-in news-event filter</span>
+    <span class="tick up">MCX GOLD ▲</span>
+    <span class="tick">Fixed-percent risk sizing</span>
+    <span class="tick">EMA trailing exit</span>
+    <span class="tick">Self-custody — your broker, your account</span>
+    <span class="tick">Trusted by traders across India &amp; worldwide</span>
+  </div>
+</div>
+
+<!-- ========== HOME ========== -->
+<div class="view active" id="view-home">
+  <section class="hero" style="padding-bottom:40px;">
+    <div class="candle-bg" aria-hidden="true">
+      <div class="cbar" style="height:40%; animation-delay:0s;"></div>
+      <div class="cbar down" style="height:65%; animation-delay:0.2s;"></div>
+      <div class="cbar" style="height:30%; animation-delay:0.4s;"></div>
+      <div class="cbar" style="height:80%; animation-delay:0.1s;"></div>
+      <div class="cbar down" style="height:50%; animation-delay:0.6s;"></div>
+      <div class="cbar" style="height:70%; animation-delay:0.3s;"></div>
+      <div class="cbar down" style="height:35%; animation-delay:0.5s;"></div>
+      <div class="cbar" style="height:90%; animation-delay:0.15s;"></div>
+      <div class="cbar" style="height:45%; animation-delay:0.35s;"></div>
+      <div class="cbar down" style="height:60%; animation-delay:0.25s;"></div>
+      <div class="cbar" style="height:75%; animation-delay:0.45s;"></div>
+      <div class="cbar down" style="height:40%; animation-delay:0.55s;"></div>
+      <div class="cbar" style="height:85%; animation-delay:0.05s;"></div>
+      <div class="cbar" style="height:55%; animation-delay:0.65s;"></div>
+      <div class="cbar down" style="height:30%; animation-delay:0.3s;"></div>
+    </div>
+    <div>
+      <span class="eyebrow">Automated MT5 execution</span>
+      <h1>Rules don't get<br>tired. <span class="accent gold-glow">Traders do.</span></h1>
+      <p class="lede">Kanak AI runs a disciplined, rules-based strategy on your MetaTrader 5 account around the clock — reading confirmation, filtering news risk, and sizing every position the same way, every time.</p>
+      <div class="hero-ctas">
+        <button class="btn-primary" data-view="product">View pricing</button>
+        <button class="btn-secondary" data-view="about">How it works</button>
+      </div>
+    </div>
+    <div class="chart-panel">
+      <div class="label-row">
+        <span class="pair">XAUUSD · TVC:GOLD · 15m</span>
+        <span class="status"><span class="pulse"></span>LIVE</span>
+      </div>
+      <div class="candles" id="candleRow" style="display:none;"></div>
+      <div class="tv-chart-wrap" style="height:400px; width:100%; border-radius:4px; overflow:hidden; background:var(--bg);">
+        <iframe
+          id="tvFrame"
+          src=""
+          style="width:100%; height:100%; border:0;"
+          allowtransparency="true"
+          frameborder="0"
+          loading="lazy"
+          title="Live XAUUSD chart">
+        </iframe>
+      </div>
+      <div style="margin-top:10px; text-align:right;">
+        <a href="https://www.tradingview.com/symbols/TVC-GOLD/" target="_blank" rel="noopener" style="font-size:0.72rem; color:var(--ink-dim); font-family:'IBM Plex Mono',monospace;">Open full chart on TradingView ↗</a>
+      </div>
+      <div class="readout">
+        <div>Source<b>TradingView</b></div>
+        <div>Symbol<b>TVC:GOLD</b></div>
+        <div>Interval<b>15m</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Why automate</span>
+        <h2>Built for the hours you're not watching</h2>
+        <p>A strategy is only as good as its execution. Kanak AI removes hesitation, revenge trades, and screen fatigue from the equation — it runs the same logic at 3am as it does at 3pm.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <span class="num">01</span>
+          <h3>Range-breakout core</h3>
+          <p>Trades a defined-range breakout with a confirmation step before any position opens — no chasing the first candle.</p>
+        </div>
+        <div class="feature-card">
+          <span class="num">02</span>
+          <h3>Adaptive confirmation</h3>
+          <p>Confirmation timeframe adjusts to how wide the opening range is, tightening entries when volatility is thin.</p>
+        </div>
+        <div class="feature-card">
+          <span class="num">03</span>
+          <h3>Entry quality guard</h3>
+          <p>Skips setups where price has already run too far past the confirmed level, avoiding late, low-quality entries.</p>
+        </div>
+        <div class="feature-card">
+          <span class="num">04</span>
+          <h3>News-event filter</h3>
+          <p>Automatically stands aside around high-impact news releases instead of trading into the spread spike.</p>
+        </div>
+        <div class="feature-card">
+          <span class="num">05</span>
+          <h3>Fixed-percent risk</h3>
+          <p>Every position is sized off account balance, not gut feel — the same risk discipline on trade one and trade five hundred.</p>
+        </div>
+        <div class="feature-card">
+          <span class="num">06</span>
+          <h3>Trailing exit logic</h3>
+          <p>An EMA-based trail locks in progress on winning trades instead of waiting on a single fixed target.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="trust-row">
+        <div class="trust-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4Z"/></svg>
+          <div><h4>Self-custody, always</h4><p>Runs on your own MT5 login and broker. We never hold funds or trade for you.</p></div>
+        </div>
+        <div class="trust-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+          <div><h4>Rules published upfront</h4><p>Every condition the engine checks before entering is documented, not hidden.</p></div>
+        </div>
+        <div class="trust-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <div><h4>Automated USDT checkout</h4><p>Pay in USDT (TRC20) through a secure, automated checkout — no card data or bank details collected.</p></div>
+        </div>
+        <div class="trust-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17 2.1 12 5 7 2.1M3 7v10l9 5 9-5V7"/><path d="M3 7 12 12l9-5"/></svg>
+          <div><h4>Ongoing updates & support</h4><p>If we improve or update Kanak AI, existing buyers get the update and our support at no extra cost.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="wrap" style="border:1px solid var(--line); border-radius:6px; padding:48px; background:var(--bg-raised); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px;">
+      <div>
+        <h2 style="font-size:1.6rem; margin-bottom:8px;">Start with a one-month trial.</h2>
+        <p style="color:var(--ink-dim);">Full access to Kanak AI on a single MT5 account. Upgrade to lifetime whenever you're ready.</p>
+      </div>
+      <button class="btn-primary" data-view="product">See pricing →</button>
+    </div>
+  </section>
+</div>
+
+<!-- ========== PRODUCT ========== -->
+<div class="view" id="view-product">
+  <section style="padding-top:70px;">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Products</span>
+        <h2>Two tools, built the same way</h2>
+        <p>Pick a product to see full details, pricing, and requirements.</p>
+      </div>
+
+      <div class="product-folders reveal" id="productFolders">
+        <button class="folder-card" data-open="kanak-ai">
+          <div class="folder-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg>
+          </div>
+          <h3>Kanak AI</h3>
+          <div class="folder-tag">MT5 · Automated breakout engine</div>
+          <div class="folder-price">From $499</div>
+          <div class="folder-cta">View details <span class="arrow">→</span></div>
+        </button>
+
+        <button class="folder-card" data-open="algo-v1">
+          <div class="folder-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
+          </div>
+          <h3>Kanak Algo V1</h3>
+          <div class="folder-tag">TradingView · Dynamic Market Metrics indicator</div>
+          <div class="folder-price">From $49/mo</div>
+          <div class="folder-cta">View details <span class="arrow">→</span></div>
+        </button>
+      </div>
+
+      <div class="product-detail" id="detail-kanak-ai" style="display:none;">
+      <button class="back-link" data-back="1">← Back to Products</button>
+
+      <div class="section-head" style="margin-top:32px;">
+        <span class="eyebrow">Products</span>
+        <h2>Kanak AI</h2>
+        <p>A fully automated MT5 breakout engine — trial or lifetime access.</p>
+      </div>
+
+      <div class="product-card reveal">
+        <div>
+          <h3>Kanak AI</h3>
+          <div class="tagline">MT5 · Range-breakout engine · Gold &amp; FX</div>
+          <p class="desc">Kanak AI reads the market's opening range, waits for genuine confirmation, and executes with fixed risk per trade — filtering out news volatility and low-quality setups along the way. Runs unattended on your own MT5 terminal.</p>
+          <ul class="feature-list">
+            <li><span class="check">✓</span> Adaptive breakout confirmation (M5/M15)</li>
+            <li><span class="check">✓</span> Entry quality guard against late entries</li>
+            <li><span class="check">✓</span> Built-in high-impact news filter</li>
+            <li><span class="check">✓</span> Fixed-percent risk position sizing</li>
+            <li><span class="check">✓</span> EMA-based trailing exit</li>
+            <li><span class="check">✓</span> Runs on your own broker &amp; MT5 login</li>
+          </ul>
+        </div>
+        <div class="divider"></div>
+        <div>
+          <div class="tier">
+            <div>
+              <div class="tier-name">1-Month Trial</div>
+              <div class="tier-desc">Full features, single MT5 account, 30 days</div>
+            </div>
+            <div>
+              <div class="tier-price">$499<span>USD, paid in crypto</span><span class="inr-approx">≈ ₹41,500 (approx.)</span></div>
+              <button class="tier-buy" data-tier="Kanak AI — 1-Month Trial" data-price="499">Buy with crypto</button>
+            </div>
+          </div>
+          <div class="tier">
+            <div>
+              <div class="tier-name">Lifetime Access</div>
+              <div class="tier-desc">One-time payment, all future updates included</div>
+            </div>
+            <div style="text-align:right;">
+              <div class="disc-badge">LIMITED-TIME OFFER</div>
+              <div class="strike-price">$8,999</div>
+              <div class="tier-price">$5,500<span>USD, paid in crypto</span><span class="inr-approx">≈ ₹4,56,500 (approx.)</span></div>
+              <div class="save-text">Save $3,499</div>
+              <button class="tier-buy" data-tier="Kanak AI — Lifetime Access" data-price="5500">Buy with crypto</button>
+            </div>
+          </div>
+
+          <div class="crypto-note">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="stroke:var(--ink-dim);" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            <div>Checkout is <b style="color:var(--ink);">USDT (TRC20)</b>, verified automatically via NOWPayments — no screenshots or manual confirmation needed. Access details are emailed within <b style="color:var(--ink);">1–2 business days</b> of your payment confirming on-chain. INR figures shown are indicative only (~₹83/USD) — you always pay the exact USD amount in USDT.</div>
+          </div>
+
+          <div class="crypto-note" style="border-color:var(--gold); background:var(--bg-raised);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="stroke:var(--gold);" stroke-width="1.5"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4Z"/></svg>
+            <div>Recommended broker: <a href="https://my.roboforex.com/en/?a=vraqf" target="_blank" rel="noopener" style="color:var(--gold); font-weight:600; text-decoration:underline; text-underline-offset:3px;">RoboForex</a> — ECN Prime Raw Spread account, and a free VPS when you sign up through that link.</div>
+          </div>
+
+          <div class="strict-alert" style="margin-top:12px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;"><path d="M12 9v4M12 17h.01M10.29 3.86 1.82 18a1 1 0 0 0 .86 1.5h18.64a1 1 0 0 0 .86-1.5L13.71 3.86a1 1 0 0 0-1.72 0Z"/></svg>
+            <div>
+              <b>No refunds — all sales are final</b>, on both the Trial and Lifetime tiers. Trading outcomes depend on market conditions, broker execution, and risk settings you control, so results are inherently subjective to each user. Losses from live trading are not grounds for a refund.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="req-table reveal">
+        <div class="req-row"><div class="k">Platform</div><div class="v">MetaTrader 5 (build 3800+), Windows or VPS</div></div>
+        <div class="req-row"><div class="k">Recommended broker</div><div class="v"><a href="https://my.roboforex.com/en/?a=vraqf" target="_blank" rel="noopener" style="color:var(--gold); text-decoration:underline; text-underline-offset:3px;">RoboForex</a> — our recommended broker for its ECN Prime Raw Spread account. Signing up through that link also qualifies you for a free VPS.</div></div>
+        <div class="req-row"><div class="k">Instruments</div><div class="v">XAUUSD (gold) primary; configurable for major FX pairs</div></div>
+        <div class="req-row"><div class="k">Recommended VPS</div><div class="v">The MetaTrader VPS built into your MT5 terminal (Tools → Options → VPS) keeps the engine running 24/5 without your PC staying on. Free when you open a RoboForex account through our link above.</div></div>
+        <div class="req-row"><div class="k">Minimum balance</div><div class="v">Broker and lot-size dependent — sized to your fixed-risk % setting</div></div>
+        <div class="req-row"><div class="k">Delivery</div><div class="v">Compiled .ex5 file + setup guide, delivered within 1–2 business days of payment confirming</div></div>
+      </div>
+
+      <div class="section-head" style="margin-bottom:24px;">
+        <span class="eyebrow">Verified Track Record</span>
+        <h2 style="font-size:1.8rem;">Kanak AI 3.3V — Strategy Performance Report</h2>
+        <p>Full historical results across 14 quarters, Q1 2023 through Q2 2026. Published as-is — including the losing quarters.</p>
+      </div>
+
+      <div class="stat-row reveal">
+        <div class="stat-card">
+          <div class="stat-label">Total Closed Trades</div>
+          <div class="stat-value neutral" data-count="586" data-count-suffix="">586</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Win Rate</div>
+          <div class="stat-value neutral" data-count="37.03" data-count-decimals="2" data-count-suffix="%">37.03%</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Net Profit (Inc. Fees)</div>
+          <div class="stat-value" data-count="139338.83" data-count-decimals="2" data-count-prefix="+$">+$139,338.83</div>
+        </div>
+      </div>
+      <div class="stat-sub">Report generated 2026-05-11 · Kanak AI Analytics</div>
+
+      <div class="stat-row reveal" style="margin-top:-12px;">
+        <div class="stat-card">
+          <div class="stat-label">Avg Trades / Month</div>
+          <div class="stat-value neutral">~14</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Win Rate</div>
+          <div class="stat-value neutral" data-count="37.03" data-count-decimals="2" data-count-suffix="%">37.03%</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Avg Net Profit / Month</div>
+          <div class="stat-value" data-count="3317.59" data-count-decimals="2" data-count-prefix="+$">+$3,317.59</div>
+        </div>
+      </div>
+      <div class="stat-sub">Monthly average — quarterly totals ÷ 3, over 42 months (Q1 2023–Q2 2026)</div>
+
+      <div class="perf-chart reveal">
+        <div class="perf-chart-title">Net profit by quarter</div>
+        <div class="perf-row"><span class="q-label">Q1 2023</span><div class="perf-track"><div class="perf-bar pos" style="width:4.4%;"></div></div><span class="q-val pos-text">+$2,777</span></div>
+        <div class="perf-row"><span class="q-label">Q2 2023</span><div class="perf-track"><div class="perf-bar pos" style="width:37.7%;"></div></div><span class="q-val pos-text">+$23,536</span></div>
+        <div class="perf-row"><span class="q-label">Q3 2023</span><div class="perf-track"><div class="perf-bar pos" style="width:50%;"></div></div><span class="q-val pos-text">+$31,195</span></div>
+        <div class="perf-row"><span class="q-label">Q4 2023</span><div class="perf-track"><div class="perf-bar pos" style="width:21.1%;"></div></div><span class="q-val pos-text">+$13,166</span></div>
+        <div class="perf-row"><span class="q-label">Q1 2024</span><div class="perf-track"><div class="perf-bar pos" style="width:36.5%;"></div></div><span class="q-val pos-text">+$22,746</span></div>
+        <div class="perf-row"><span class="q-label">Q2 2024</span><div class="perf-track"><div class="perf-bar neg" style="width:20.5%;"></div></div><span class="q-val neg-text">-$12,777</span></div>
+        <div class="perf-row"><span class="q-label">Q3 2024</span><div class="perf-track"><div class="perf-bar pos" style="width:11.1%;"></div></div><span class="q-val pos-text">+$6,931</span></div>
+        <div class="perf-row"><span class="q-label">Q4 2024</span><div class="perf-track"><div class="perf-bar pos" style="width:48.4%;"></div></div><span class="q-val pos-text">+$30,190</span></div>
+        <div class="perf-row"><span class="q-label">Q1 2025</span><div class="perf-track"><div class="perf-bar pos" style="width:6.5%;"></div></div><span class="q-val pos-text">+$4,040</span></div>
+        <div class="perf-row"><span class="q-label">Q2 2025</span><div class="perf-track"><div class="perf-bar neg" style="width:0.5%;"></div></div><span class="q-val neg-text">-$325</span></div>
+        <div class="perf-row"><span class="q-label">Q3 2025</span><div class="perf-track"><div class="perf-bar neg" style="width:12.9%;"></div></div><span class="q-val neg-text">-$8,061</span></div>
+        <div class="perf-row"><span class="q-label">Q4 2025</span><div class="perf-track"><div class="perf-bar neg" style="width:16.8%;"></div></div><span class="q-val neg-text">-$10,462</span></div>
+        <div class="perf-row"><span class="q-label">Q1 2026</span><div class="perf-track"><div class="perf-bar pos" style="width:25.5%;"></div></div><span class="q-val pos-text">+$15,903</span></div>
+        <div class="perf-row"><span class="q-label">Q2 2026</span><div class="perf-track"><div class="perf-bar pos" style="width:32.9%;"></div></div><span class="q-val pos-text">+$20,480</span></div>
+      </div>
+
+      <div class="perf-table reveal">
+        <table>
+          <thead>
+            <tr><th>Quarter</th><th>Trades</th><th>Wins</th><th>Win %</th><th>Net Profit</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Q1 2023</td><td>32</td><td>14</td><td>43.75%</td><td class="profit-pos">+$2,777.30</td></tr>
+            <tr><td>Q2 2023</td><td>37</td><td>16</td><td>43.24%</td><td class="profit-pos">+$23,535.54</td></tr>
+            <tr><td>Q3 2023</td><td>55</td><td>26</td><td>47.27%</td><td class="profit-pos">+$31,195.42</td></tr>
+            <tr><td>Q4 2023</td><td>34</td><td>14</td><td>41.18%</td><td class="profit-pos">+$13,165.50</td></tr>
+            <tr><td>Q1 2024</td><td>36</td><td>17</td><td>47.22%</td><td class="profit-pos">+$22,745.81</td></tr>
+            <tr><td>Q2 2024</td><td>36</td><td>11</td><td>30.56%</td><td class="profit-neg">-$12,776.52</td></tr>
+            <tr><td>Q3 2024</td><td>44</td><td>16</td><td>36.36%</td><td class="profit-pos">+$6,931.06</td></tr>
+            <tr><td>Q4 2024</td><td>45</td><td>21</td><td>46.67%</td><td class="profit-pos">+$30,189.69</td></tr>
+            <tr><td>Q1 2025</td><td>44</td><td>15</td><td>34.09%</td><td class="profit-pos">+$4,040.01</td></tr>
+            <tr><td>Q2 2025</td><td>48</td><td>15</td><td>31.25%</td><td class="profit-neg">-$325.15</td></tr>
+            <tr><td>Q3 2025</td><td>48</td><td>14</td><td>29.17%</td><td class="profit-neg">-$8,060.99</td></tr>
+            <tr><td>Q4 2025</td><td>54</td><td>12</td><td>22.22%</td><td class="profit-neg">-$10,461.84</td></tr>
+            <tr><td>Q1 2026</td><td>51</td><td>18</td><td>35.29%</td><td class="profit-pos">+$15,902.90</td></tr>
+            <tr><td>Q2 2026</td><td>22</td><td>8</td><td>36.36%</td><td class="profit-pos">+$20,480.10</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:0.76rem; color:var(--ink-dim); margin-bottom:60px;">Past performance does not guarantee future results. Win rate alone doesn't capture the full picture — profitability comes from a favorable risk/reward ratio per trade, not from winning most trades.</p>
+
+      <div class="section-head" style="margin-bottom:24px;">
+        <span class="eyebrow">Live Account Verification</span>
+        <h2 style="font-size:1.8rem;">Real Money, Real Results — RoboForex MT5</h2>
+        <p>A live trading account statement covering Jun 29 – Aug 23, 2026. Account holder identity and account number have been redacted for privacy.</p>
+      </div>
+
+      <div class="stat-row reveal">
+        <div class="stat-card">
+          <div class="stat-label">Account Gain</div>
+          <div class="stat-value neutral" data-count="149.69" data-count-decimals="2" data-count-suffix="%">149.69%</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Net Profit</div>
+          <div class="stat-value" data-count="20037.53" data-count-decimals="2" data-count-prefix="+$">+$20,037.53</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Max Drawdown</div>
+          <div class="stat-value neutral" style="color:var(--red);" data-count="36.52" data-count-decimals="2" data-count-suffix="%">36.52%</div>
+        </div>
+      </div>
+      <div class="stat-sub">XAUUSD · RoboForex Ltd (MT5) · Verified live account statement</div>
+
+      <div class="stat-row reveal" style="margin-top:-12px;">
+        <div class="stat-card">
+          <div class="stat-label">Profit Factor</div>
+          <div class="stat-value neutral" data-count="1.22" data-count-decimals="2">1.22</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Win Rate</div>
+          <div class="stat-value neutral" data-count="36.28" data-count-decimals="2" data-count-suffix="%">36.28%</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Closed Trades</div>
+          <div class="stat-value neutral" data-count="113" data-count-suffix="">113</div>
+        </div>
+      </div>
+      <div class="stat-sub">Long 64 (56.64%) · Short 49 (43.36%) · 100% XAUUSD</div>
+
+      <div class="proof-gallery reveal">
+        <div class="proof-item">
+          <img src="proof/live-account-summary.png" alt="Live account summary — gain, drawdown, growth chart">
+          <div class="proof-caption">Account summary &amp; growth curve</div>
+        </div>
+        <div class="proof-item">
+          <img src="proof/live-account-pnl.png" alt="Live account profit and loss breakdown">
+          <div class="proof-caption">Monthly profit &amp; loss</div>
+        </div>
+        <div class="proof-item">
+          <img src="proof/live-account-risk.png" alt="Live account drawdown and risk chart">
+          <div class="proof-caption">Balance vs. drawdown (risk)</div>
+        </div>
+      </div>
+
+      <div class="perf-chart reveal">
+        <div class="perf-chart-title">Monthly P&amp;L (2026)</div>
+        <div class="perf-row"><span class="q-label">Jun</span><div class="perf-track"><div class="perf-bar pos" style="width:3.6%;"></div></div><span class="q-val pos-text">+$2,220 (+11.11%)</span></div>
+        <div class="perf-row"><span class="q-label">Jul</span><div class="perf-track"><div class="perf-bar pos" style="width:50%;"></div></div><span class="q-val pos-text">+$31,230 (+281.1%)</span></div>
+        <div class="perf-row"><span class="q-label">Aug</span><div class="perf-track"><div class="perf-bar neg" style="width:21.5%;"></div></div><span class="q-val neg-text">-$13,420 (-41.04%)</span></div>
+      </div>
+
+      <div class="req-table reveal">
+        <div class="req-row"><div class="k">Best trade</div><div class="v" style="color:var(--teal);">+$9,078.72</div></div>
+        <div class="req-row"><div class="k">Worst trade</div><div class="v" style="color:var(--red);">-$4,584.88</div></div>
+        <div class="req-row"><div class="k">Max. consecutive losses</div><div class="v">8 trades, -$10,468.58</div></div>
+        <div class="req-row"><div class="k">Sharpe / Recovery factor</div><div class="v">0.13 / 0.83</div></div>
+      </div>
+
+      <div class="strict-alert" style="margin-bottom:60px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;"><path d="M12 9v4M12 17h.01M10.29 3.86 1.82 18a1 1 0 0 0 .86 1.5h18.64a1 1 0 0 0 .86-1.5L13.71 3.86a1 1 0 0 0-1.72 0Z"/></svg>
+        <div>
+          <b>Read this alongside the July swing and August drawdown above, not instead of it.</b> This is a two-month live account window — July was strongly profitable (+281%) and August posted a -41% month, with a 36.52% max drawdown across the period. A short window like this is not a reliable predictor of long-term results; see the multi-year backtest above for longer-run context. Past or live performance never guarantees future results.
+        </div>
+      </div>
+
+      <div class="section-head" style="margin-bottom:8px;">
+        <span class="eyebrow">FAQ</span>
+        <h2 style="font-size:1.8rem;">Common questions</h2>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-q">Does the trial have full functionality?<span class="plus">+</span></button>
+          <div class="faq-a"><p>Yes. The 1-month trial runs the same engine and logic as lifetime access, on a single MT5 account. Nothing is limited except the duration.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Can I upgrade from trial to lifetime later?<span class="plus">+</span></button>
+          <div class="faq-a"><p>Yes — contact support with your original order reference and we'll apply the trial payment toward the lifetime price.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Do you have access to my trading account or funds?<span class="plus">+</span></button>
+          <div class="faq-a"><p>No. The engine runs entirely on your own MT5 terminal and broker login. We never request account access, withdrawal rights, or fund custody.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What happens after I pay?<span class="plus">+</span></button>
+          <div class="faq-a"><p>Click "Buy with crypto," complete the USDT (TRC20) payment on the secure checkout page, and your payment is verified automatically — no screenshot needed. We're notified the moment it confirms and email your .ex5 file and setup guide within 1–2 business days.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Is the performance report a guarantee of future results?<span class="plus">+</span></button>
+          <div class="faq-a"><p>No. The report above (586 trades, 37.03% win rate, +$139,338.83 net profit across 14 quarters) reflects historical results only. Several quarters were unprofitable — we publish those alongside the winning ones. Live results will vary by broker, spread, and market conditions.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Do I get updates and support after I buy?<span class="plus">+</span></button>
+          <div class="faq-a"><p>Yes. If we release an update or improvement to Kanak AI, existing buyers (trial or lifetime) receive it and get our support with setup or issues — at no extra cost.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Do you offer refunds?<span class="plus">+</span></button>
+          <div class="faq-a"><p>No. All sales are final on both the Trial and Lifetime tiers — there are no refunds under any circumstance, including trading losses. Results depend on your broker, market conditions, and the risk settings you choose, so outcomes are subjective to each user and not something we can guarantee or reimburse against.</p></div>
+        </div>
+      </div>
+      </div><!-- /detail-kanak-ai -->
+
+      <div class="product-detail" id="detail-algo-v1" style="display:none;">
+      <button class="back-link" data-back="1">← Back to Products</button>
+
+      <div class="section-head" style="margin-bottom:24px; margin-top:32px;">
+        <span class="eyebrow">Products</span>
+        <h2>Kanak Algo V1</h2>
+        <p>A TradingView indicator that reads trend state, momentum, and volatility in real time, and plots an entry, stop loss, and three take-profit targets directly on your chart.</p>
+      </div>
+
+      <div class="product-card reveal">
+        <div>
+          <h3>Kanak Algo V1</h3>
+          <div class="tagline">TradingView Indicator · Dynamic Market Metrics · Gold &amp; FX</div>
+          <p class="desc">Kanak Algo V1 is a Pine Script indicator built around a live "Dynamic Market Metrics" panel — bullish/bearish trend state, an entry trigger, stop loss, and TP1/TP2/TP3 levels, plus momentum, money-flow, and volatility readouts, all updating on the chart as price moves. Works on any symbol or timeframe in TradingView.</p>
+          <ul class="feature-list">
+            <li><span class="check">✓</span> Real-time trend state (Bullish/Bearish) with on-chart labels</li>
+            <li><span class="check">✓</span> Auto-plotted entry trigger, stop loss, and TP1/TP2/TP3 targets</li>
+            <li><span class="check">✓</span> Momentum and money-flow strength meters</li>
+            <li><span class="check">✓</span> Volatility expansion/contraction detection</li>
+            <li><span class="check">✓</span> Trend age tracker (bars since trend change)</li>
+            <li><span class="check">✓</span> Optional higher-timeframe (HTF) context filter</li>
+          </ul>
+        </div>
+        <div class="divider"></div>
+        <div>
+          <div class="tier">
+            <div>
+              <div class="tier-name">TV Script Only</div>
+              <div class="tier-desc">Indicator access on TradingView, billed monthly</div>
+            </div>
+            <div>
+              <div class="tier-price">$49<span>/month, paid in crypto</span><span class="inr-approx">≈ ₹4,070/mo (approx.)</span></div>
+              <button class="tier-buy" data-tier="Kanak Algo V1 — TV Script Only" data-price="49">Buy with crypto</button>
+            </div>
+          </div>
+          <div class="tier">
+            <div>
+              <div class="tier-name">TV Script + EA Automation</div>
+              <div class="tier-desc">Indicator plus the automated MT5 EA, billed monthly</div>
+            </div>
+            <div>
+              <div class="tier-price">$199<span>/month, paid in crypto</span><span class="inr-approx">≈ ₹16,500/mo (approx.)</span></div>
+              <button class="tier-buy" data-tier="Kanak Algo V1 — Script + EA" data-price="199">Buy with crypto</button>
+            </div>
+          </div>
+          <div class="tier">
+            <div>
+              <div class="tier-name">Lifetime Access</div>
+              <div class="tier-desc">Script + EA Automation, one-time payment</div>
+            </div>
+            <div>
+              <div class="tier-price">$1,099<span>USD, paid in crypto</span><span class="inr-approx">≈ ₹91,200 (approx.)</span></div>
+              <button class="tier-buy" data-tier="Kanak Algo V1 — Lifetime" data-price="1099">Buy with crypto</button>
+            </div>
+          </div>
+
+          <div class="crypto-note">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="stroke:var(--ink-dim);" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            <div>Same automated USDT (TRC20) checkout as Kanak AI. For this product, also email your <b style="color:var(--ink);">TradingView username</b> to <a href="mailto:Kanakmay26@gmail.com" style="color:var(--gold); text-decoration:underline; text-underline-offset:3px;">Kanak Algo's Support</a> after paying, so we can grant script access. Access is typically granted within <b style="color:var(--ink);">1–2 business days</b>. INR figures shown are indicative only (~₹83/USD) — you always pay the exact USD amount in USDT.</div>
+          </div>
+
+          <div class="crypto-note" style="border-color:var(--gold); background:var(--bg-raised);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="stroke:var(--gold);" stroke-width="1.5"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4Z"/></svg>
+            <div>Recommended broker: <a href="https://my.roboforex.com/en/?a=vraqf" target="_blank" rel="noopener" style="color:var(--gold); font-weight:600; text-decoration:underline; text-underline-offset:3px;">RoboForex</a> — ECN Prime Raw Spread account, and a free VPS when you sign up through that link.</div>
+          </div>
+
+          <div class="strict-alert" style="margin-top:12px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;"><path d="M12 9v4M12 17h.01M10.29 3.86 1.82 18a1 1 0 0 0 .86 1.5h18.64a1 1 0 0 0 .86-1.5L13.71 3.86a1 1 0 0 0-1.72 0Z"/></svg>
+            <div>
+              <b>No refunds — all sales are final</b>, on every tier of this product too. Monthly tiers are billed manually each cycle (send payment, email confirmation) — access simply isn't renewed if a payment isn't received for the next month.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-head" style="margin-bottom:8px;">
+        <span class="eyebrow">FAQ</span>
+        <h2 style="font-size:1.8rem;">Common questions</h2>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-q">Do I need TradingView Pro/Premium to use the script?<span class="plus">+</span></button>
+          <div class="faq-a"><p>A free TradingView account can view invite-only scripts, though a paid plan gives you more alert and chart-per-tab allowances. The indicator itself works on the free plan.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What happens after I pay?<span class="plus">+</span></button>
+          <div class="faq-a"><p>Payment is verified automatically via NOWPayments — no screenshot needed. Just also email your TradingView username to Kanak Algo's Support so we can grant script access (and send the EA file, on higher tiers). Access is typically granted within 1–2 business days.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Do you offer refunds?<span class="plus">+</span></button>
+          <div class="faq-a"><p>No. All sales are final on every tier, monthly or lifetime, including trading losses from using the indicator or EA.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Do I get updates and support?<span class="plus">+</span></button>
+          <div class="faq-a"><p>Yes. Active subscribers and lifetime buyers get script updates and setup support at no extra cost.</p></div>
+        </div>
+      </div>
+      </div><!-- /detail-algo-v1 -->
+
+    </div>
+  </section>
+</div>
+
+<!-- ========== CHECKOUT MODAL ========== -->
+<div class="modal-overlay" id="checkoutModal">
+  <div class="modal">
+    <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+    <h3>Preparing your payment</h3>
+    <div class="sub" id="modalSub">Kanak AI — Trial</div>
+
+    <div class="modal-row"><span class="k">Amount due</span><span class="v" id="modalAmount">499.00 USDT</span></div>
+    <div class="modal-row"><span class="k">Network</span><span class="v">TRC20 (USDT)</span></div>
+
+    <div class="modal-status" id="modalStatus"><span class="spin"></span><span>Generating a secure invoice…</span></div>
+
+    <div class="invoice-note" id="modalError" style="display:none; color:var(--red);">
+      Something went wrong generating your payment link. Please try again in a moment, or email <a href="mailto:Kanakmay26@gmail.com" style="color:var(--red); text-decoration:underline;">Kanak Algo's Support</a> with the product and tier you'd like and we'll help directly.
+    </div>
+
+    <div class="invoice-note">
+      Payment and confirmation are handled automatically via NOWPayments. You'll be redirected to a secure checkout page to complete payment. Access is typically delivered within 1–2 business days after confirmation.
+    </div>
+  </div>
+</div>
+
+<!-- ========== LEGAL MODAL ========== -->
+<div class="modal-overlay legal-modal" id="legalModal">
+  <div class="modal">
+    <button class="modal-close" id="legalClose" aria-label="Close">✕</button>
+    <h3 id="legalTitle">Terms of Service</h3>
+    <div id="legalBody"></div>
+  </div>
+</div>
+
+<!-- ========== ABOUT ========== -->
+<div class="view" id="view-about">
+  <section style="padding-top:70px;">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">About</span>
+        <h2>We build tools that trade the same way, every time</h2>
+      </div>
+      <div class="about-grid">
+        <div>
+          <p>Kanak Algo's builds automated MetaTrader 5 tools for traders who'd rather define a process once and let it run than sit in front of charts all day.</p>
+          <p>Every product we release starts as a rules-based strategy — not a black box. We publish exactly what it checks for before it takes a trade: range, confirmation, risk, and news conditions. What changes is how consistently that process gets executed once it's running unattended, 24 hours a day, five days a week.</p>
+          <p>We sell direct, we accept payment in crypto, and we keep the lineup small on purpose — one product done properly before the next one ships.</p>
+        </div>
+        <div>
+          <div class="principle">
+            <span class="mark">01</span>
+            <div><h4>Rules over discretion</h4><p>Every entry and exit follows a published condition, not a judgment call made in the moment.</p></div>
+          </div>
+          <div class="principle">
+            <span class="mark">02</span>
+            <div><h4>Fixed risk, always</h4><p>Position size is calculated the same way on every trade — no sizing up after a loss.</p></div>
+          </div>
+          <div class="principle">
+            <span class="mark">03</span>
+            <div><h4>Your account, your control</h4><p>The bot runs on your own MT5 terminal and broker login. We never hold your funds.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ========== CONTACT ========== -->
+<div class="view" id="view-contact">
+  <section style="padding-top:70px;">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Contact</span>
+        <h2>Questions before you buy?</h2>
+        <p>Ask about setup, broker compatibility, or the trial before committing to lifetime access.</p>
+      </div>
+      <div class="contact-grid">
+        <form id="contactForm">
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" required>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" required>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" required placeholder="Which product, which broker, and what you're trying to do."></textarea>
+          </div>
+          <button type="submit" class="btn-primary">Send message</button>
+          <div class="form-status" id="formStatus">Opening your email client to send this — if nothing opens, reach Kanak Algo's Support directly using the address on this page.</div>
+        </form>
+        <div class="contact-info">
+          <div class="row"><div class="k">Support</div><div class="v"><a href="mailto:Kanakmay26@gmail.com" style="color:var(--gold); text-decoration:underline; text-underline-offset:3px;">Kanak Algo's Support</a></div></div>
+          <div class="row"><div class="k">Response time</div><div class="v">Within 24 hours</div></div>
+          <div class="row"><div class="k">Payments</div><div class="v">USDT (TRC20) — automated via NOWPayments</div></div>
+          <div class="row"><div class="k">Platform</div><div class="v">MetaTrader 5</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="legal-links">
+    <button data-legal="terms">Terms of Service</button>
+    <button data-legal="privacy">Privacy Policy</button>
+    <button data-legal="risk">Risk Disclosure</button>
+  </div>
+  <div class="wrap risk">
+    Trading involves substantial risk of loss and is not suitable for all investors. Past or simulated performance does not guarantee future results. Kanak AI is a trade-execution tool — you remain responsible for your own trading and risk decisions.
+  </div>
+  © 2026 Kanak Algo's. All rights reserved.
+</footer>
+
+<script src="app.js"></script>
+
+</body>
+</html>

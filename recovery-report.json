@@ -1,0 +1,26 @@
+{
+  "source": "https://kanak-ai-site-kanakmay26-4532s-projects.vercel.app/",
+  "public_alias": "https://kanak-ai-site-six.vercel.app/",
+  "deployment": "dpl_Gp1NBsEV6S8SHnNFW47k6BCByXab",
+  "github": "KanakAi repository is empty; other accessible repositories are unrelated trading dashboards.",
+  "missing_assets": [
+    {
+      "asset": "proof/live-account-summary.png",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "asset": "proof/live-account-pnl.png",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "asset": "proof/live-account-risk.png",
+      "error": "HTTP Error 404: Not Found"
+    }
+  ],
+  "limitations": [
+    "Three proof images are referenced but absent from the live deployment.",
+    "TradingView requires internet.",
+    "Checkout requires original server APIs and payment credentials, excluded from this frontend backup."
+  ],
+  "tls": "Certificate and hostname verification enabled using certifi or macOS CA bundle."
+}
